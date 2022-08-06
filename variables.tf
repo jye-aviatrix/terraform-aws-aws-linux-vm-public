@@ -1,11 +1,13 @@
 variable "region" {
   description = "Provide region of the VM"
   type        = string
+  nullable    = false
 }
 
 variable "vm_name" {
   description = "Provide name of the VM. The VM name will be added to tags by default"
   type        = string
+  nullable    = false
 }
 
 variable "tags" {
@@ -27,16 +29,19 @@ locals {
 variable "vpc_id" {
   type        = string
   description = "Provide VPC id"
+  nullable    = false
 }
 
 variable "subnet_id" {
   type        = string
   description = "Provide public subnet id"
+  nullable    = false
 }
 
 variable "key_name" {
   type        = string
   description = "Provide regional key pair name for launch VM"
+  nullable    = false
 }
 
 variable "use_eip" {

@@ -12,7 +12,7 @@ The purpose of this module is to spin up a test server in public subnet quickly.
 ```terraform
 module "aws-linux-vm-public" {
   source    = "jye-aviatrix/aws-linux-vm-public/aws"
-  version   = "1.0.2"
+  version   = "1.0.3"
   key_name  = "key-pair"
   region    = "us-east-1"
   vm_name   = "public1"
@@ -30,7 +30,7 @@ output "public1" {
 ```terraform
 module "aws-linux-vm-public" {
   source    = "jye-aviatrix/aws-linux-vm-public/aws"
-  version   = "1.0.2"
+  version   = "1.0.3"
   key_name  = "key-pair"
   region    = "us-east-1"
   vm_name   = "public1"

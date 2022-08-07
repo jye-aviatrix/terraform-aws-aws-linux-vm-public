@@ -7,22 +7,40 @@ The purpose of this module is to spin up a test server in public subnet quickly.
 3. Allow inomcing SSH (From your egress IP)
 4. Allow ping from RFC1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
 
-## Example
+## Example without EIP
 
 ```terraform
-module "aws_linux_vm_public" {
+module "aws-linux-vm-public" {
   source    = "jye-aviatrix/aws-linux-vm-public/aws"
-  version   = "1.0.0"
+  version   = "1.0.1"
   key_name  = "key-pair"
   region    = "us-east-1"
   vm_name   = "public1"
-  vpc_id    = "vpc-04fc1ff"
-  subnet_id = "subnet-08ff4"
-  use_eip = true
+  vpc_id    = "vpc-04fc1"
+  subnet_id = "subnet-08ff"
 }
 
 output "public1" {
-  value = module.aws_linux_vm_public
+  value = module.aws-linux-vm-public
+}
+```
+
+## Example with EIP
+
+```terraform
+module "aws-linux-vm-public" {
+  source    = "jye-aviatrix/aws-linux-vm-public/aws"
+  version   = "1.0.1"
+  key_name  = "key-pair"
+  region    = "us-east-1"
+  vm_name   = "public1"
+  vpc_id    = "vpc-04fc1"
+  subnet_id = "subnet-08ff"
+  use_eip   = true
+}
+
+output "public1" {
+  value = module.aws-linux-vm-public
 }
 ```
 

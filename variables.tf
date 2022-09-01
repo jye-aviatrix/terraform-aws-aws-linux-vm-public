@@ -1,8 +1,3 @@
-variable "region" {
-  description = "Provide region of the VM"
-  type        = string  
-}
-
 variable "vm_name" {
   description = "Provide name of the VM. The VM name will be added to tags by default"
   type        = string  

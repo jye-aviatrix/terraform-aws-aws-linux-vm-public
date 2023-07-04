@@ -6,15 +6,30 @@ The purpose of this module is to spin up a test server in public subnet quickly.
 2. Allow incoming Web (HTTP)
 3. Allow inomcing SSH (From your egress IP)
 4. Allow ping from RFC1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+5. Require providers block in root module
+
+```
+terraform {
+  required_providers {
+     aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+```
 
 ## Example without EIP
 
 ```terraform
 module "aws-linux-vm-public" {
   source    = "jye-aviatrix/aws-linux-vm-public/aws"
-  version   = "1.0.3"
+  version   = "2.0.2"
   key_name  = "key-pair"
-  region    = "us-east-1"
   vm_name   = "public1"
   vpc_id    = "vpc-04fc1"
   subnet_id = "subnet-08ff"
@@ -30,9 +45,8 @@ output "public1" {
 ```terraform
 module "aws-linux-vm-public" {
   source    = "jye-aviatrix/aws-linux-vm-public/aws"
-  version   = "1.0.3"
+  version   = "2.0.2"
   key_name  = "key-pair"
-  region    = "us-east-1"
   vm_name   = "public1"
   vpc_id    = "vpc-04fc1"
   subnet_id = "subnet-08ff"

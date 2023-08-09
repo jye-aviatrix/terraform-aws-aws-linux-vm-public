@@ -1,21 +1,21 @@
 variable "vm_name" {
   description = "Provide name of the VM. The VM name will be added to tags by default"
-  type        = string  
+  type        = string
 }
 
 variable "vpc_id" {
   type        = string
-  description = "Provide VPC id"  
+  description = "Provide VPC id"
 }
 
 variable "subnet_id" {
   type        = string
-  description = "Provide public subnet id"  
+  description = "Provide public subnet id"
 }
 
 variable "key_name" {
   type        = string
-  description = "Provide regional key pair name for launch VM"  
+  description = "Provide regional key pair name for launch VM"
 }
 
 variable "use_eip" {
@@ -40,6 +40,12 @@ locals {
   )
 }
 
+
+variable "instance_type" {
+  type        = string
+  default     = "t2.micro"
+  description = "Provide instance type"
+}
 
 
 

@@ -49,8 +49,6 @@ resource "aws_security_group" "this" {
     cidr_blocks = ["192.168.0.0/16"]
   }
 
-
-
   ingress {
     description      = "TCP80"
     from_port        = 80
@@ -58,6 +56,31 @@ resource "aws_security_group" "this" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+  }
+
+
+  ingress {
+    description = "Iperf3-10"
+    from_port   = 5201
+    to_port     = 5201
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+
+  ingress {
+    description = "Iperf3-172"
+    from_port   = 5201
+    to_port     = 5201
+    protocol    = "tcp"
+    cidr_blocks = ["172.16.0.0/12"]
+  }
+
+  ingress {
+    description = "Iperf3-192"
+    from_port   = 5201
+    to_port     = 5201
+    protocol    = "tcp"
+    cidr_blocks = ["192.168.0.0/16"]
   }
 
   egress {
@@ -81,7 +104,7 @@ resource "aws_network_interface" "this" {
 
 resource "aws_instance" "this" {
   ami           = data.aws_ami.ubuntu_20_04_lts.id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
   network_interface {
     network_interface_id = aws_network_interface.this.id
@@ -96,6 +119,7 @@ resource "aws_instance" "this" {
 sudo apt update -y
 sudo apt install apache2 -y
 echo "<h1>${var.vm_name}</h1>" | sudo tee /var/www/html/index.html
+sudo apt install iperf3 -y
 EOF
 
 }

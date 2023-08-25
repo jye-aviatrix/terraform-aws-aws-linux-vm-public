@@ -17,3 +17,8 @@ output "ssh" {
   description = "A shortcut for ssh command (assuming .pem extension)"
   value       = "ssh -i ${var.key_name}.pem ubuntu@${local.public_ip}"
 }
+
+output "vm_name" {
+  description = "Name of the EC2 instance"
+  value = var.vm_name
+}

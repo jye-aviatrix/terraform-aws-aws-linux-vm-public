@@ -9,7 +9,7 @@ data "aws_ami" "ubuntu_20_04_lts" {
 }
 
 data "http" "ip" {
-  url = "https://ifconfig.me"
+  url = "https://ifconfig.me/ip"
 }
 
 resource "aws_security_group" "this" {
